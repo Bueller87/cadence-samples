@@ -1,15 +1,17 @@
+// THIS IS A GENERATED FILE
+// PLEASE DO NOT EDIT
+
 package main
 
 import (
 	"fmt"
-	"github.com/uber-common/cadence-samples/new_samples/worker"
 	"os"
 	"os/signal"
 	"syscall"
 )
 
 func main() {
-	worker.StartWorker()
+	StartWorker()
 
 	done := make(chan os.Signal, 1)
 	signal.Notify(done, syscall.SIGINT)
