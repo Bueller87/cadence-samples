@@ -3,8 +3,7 @@
 This workflow takes an input message and greet you as response. Try the following CLI
 
 ```bash
-cadence --env development \
-  --domain cadence-samples \
+cadence --domain cadence-samples \
   workflow start \
   --workflow_type cadence_samples.HelloWorldWorkflow \
   --tl cadence-samples-worker \
@@ -23,7 +22,6 @@ And the worker will log the completed workflow:
 Here are the details to this command:
 
 * `--domain` option describes under which domain to run this workflow
-* `--env development` calls the "local" cadence server
 * `--workflow_type` option describes which workflow to execute
 * `-tl` (or `--tasklist`) tells cadence-server which tasklist to schedule tasks with. This is the same tasklist the worker polls tasks from. See worker.go
 * `--et` (or `--execution_timeout`) tells cadence server how long to wait until timing out the workflow
@@ -57,14 +55,13 @@ Click on the workflow to see details:
 List workflows using the following command:
 
 ```bash
-cadence --env development --domain cadence-samples workflow list
+cadence --domain cadence-samples workflow list
 ```
 
 You can view an individual workflow by using the following command:
 
 ```bash
-cadence --env development \
-  --domain cadence-samples \
+cadence --domain cadence-samples \
   workflow describe \
   --wid <workflow_id>
 ```
@@ -77,8 +74,7 @@ cadence --env development \
 To view the entire history of the workflow, use the following command:
 
 ```bash
-cadence --env development \
-  --domain cadence-samples \
+cadence --domain cadence-samples \
   workflow show \
   --wid <workflow_id>
 ```

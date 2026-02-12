@@ -25,7 +25,7 @@ This directory contains samples demonstrating various Cadence workflow concepts.
 3. Open [localhost:8088](http://localhost:8088) to view Cadence UI
 4. Register the `cadence-samples` domain:
    ```bash
-   cadence --env development --domain cadence-samples domain register
+   cadence --domain cadence-samples domain register
    ```
 
 ## Running a Sample
@@ -114,8 +114,7 @@ Description of what this sample demonstrates...
 ### Start the workflow
 
 \```bash
-cadence --env development \
-  --domain cadence-samples \
+cadence --domain cadence-samples \
   workflow start \
   --workflow_type cadence_samples.MyWorkflow \
   --tl cadence-samples-worker \

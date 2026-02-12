@@ -3,8 +3,7 @@
 This workflow is very similar to the signal sample, except shows how to use queries in markdown format. Try the following CLI
 
 ```bash
-cadence --env development \
-  --domain cadence-samples \
+cadence --domain cadence-samples \
   workflow start \
   --tl cadence-samples-worker \
   --et 1000 \
