@@ -14,7 +14,7 @@
 3. Register the `cadence-samples` domain:
 
 ```bash
-cadence --env development --domain cadence-samples domain register
+cadence --domain cadence-samples domain register
 ```
 
 Refresh the [domains page](http://localhost:8088/domains) from step 2 to verify `cadence-samples` is registered.
@@ -43,8 +43,7 @@ The `CancelWorkflow` demonstrates how to properly handle workflow cancellation, 
 #### Start the workflow
 
 ```bash
-cadence --env development \
-  --domain cadence-samples \
+cadence --domain cadence-samples \
   workflow start \
   --workflow_type cadence_samples.CancelWorkflow \
   --tl cadence-samples-worker \
@@ -57,8 +56,7 @@ Copy the workflow ID from the output.
 #### Cancel the workflow
 
 ```bash
-cadence --env development \
-  --domain cadence-samples \
+cadence --domain cadence-samples \
   workflow cancel \
   --workflow_id <YOUR_WORKFLOW_ID>
 ```

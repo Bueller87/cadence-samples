@@ -14,7 +14,7 @@
 3. Register the `cadence-samples` domain:
 
 ```bash
-cadence --env development --domain cadence-samples domain register
+cadence --domain cadence-samples domain register
 ```
 
 Refresh the [domains page](http://localhost:8088/domains) from step 2 to verify `cadence-samples` is registered.
@@ -31,11 +31,10 @@ This will call the main function in main.go which starts the worker, which will 
 
 ## Markdown Query Workflow
 
-This workflow is very similar to the signal sample, except shows how to use queries in markdown format. Try the following CLI command:
+This workflow is very similar to the signal sample, except shows how to use queries in markdown format. Try the following CLI
 
 ```bash
-cadence --env development \
-  --domain cadence-samples \
+cadence --domain cadence-samples \
   workflow start \
   --tl cadence-samples-worker \
   --et 1000 \
@@ -49,7 +48,7 @@ If this is your first sample, please refer to [HelloWorkflow sample](https://git
 
 ### Signal your workflow using the markdown query
 
-This workflow will need a signal to complete successfully. In this sample, instead of using CLI, API or Web, we will use a markdown query which has signal buttons. 
+This workflow will need a signal to complete successfully. In this sample, instead of using CLI, API or Web, we will use an markdown query which has signal buttons. 
 
 * Go to the `cadence-samples` domain in cadence-web and click on this workflow. 
 * Click on the "Query" tab.

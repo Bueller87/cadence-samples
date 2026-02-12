@@ -14,7 +14,7 @@
 3. Register the `cadence-samples` domain:
 
 ```bash
-cadence --env development --domain cadence-samples domain register
+cadence --domain cadence-samples domain register
 ```
 
 Refresh the [domains page](http://localhost:8088/domains) from step 2 to verify `cadence-samples` is registered.
@@ -38,8 +38,7 @@ This folder contains samples demonstrating various activity patterns in Cadence.
 The `DynamicWorkflow` demonstrates executing an activity by its registered string name rather than passing the function reference directly. This pattern is useful when you need to dynamically determine which activity to execute at runtime.
 
 ```bash
-cadence --env development \
-  --domain cadence-samples \
+cadence --domain cadence-samples \
   workflow start \
   --workflow_type cadence_samples.DynamicWorkflow \
   --tl cadence-samples-worker \
@@ -55,8 +54,7 @@ The `ParallelBranchPickFirstWorkflow` demonstrates running multiple activities i
 - Redundant execution for reliability
 
 ```bash
-cadence --env development \
-  --domain cadence-samples \
+cadence --domain cadence-samples \
   workflow start \
   --workflow_type cadence_samples.ParallelBranchPickFirstWorkflow \
   --tl cadence-samples-worker \
