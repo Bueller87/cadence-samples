@@ -7,7 +7,6 @@ export PATH := $(GOPATH)/bin:$(PATH)
 default: test
 
 PROGS = helloworld \
-	blocks \
 	versioning \
 	delaystart \
 	branch \
@@ -54,7 +53,6 @@ TEST_DIRS=./cmd/samples/cron \
 	./cmd/samples/dsl \
 	./cmd/samples/expense \
 	./cmd/samples/fileprocessing \
-	./cmd/samples/blocks \
 	./cmd/samples/recipes/branch \
 	./cmd/samples/recipes/choice \
 	./cmd/samples/recipes/greetings \
@@ -84,9 +82,6 @@ cancelactivity:
 
 helloworld:
 	go build -o bin/helloworld cmd/samples/recipes/helloworld/*.go
-
-blocks:
-	go build -o bin/blocks cmd/samples/blocks/*.go
 
 delaystart:
 	go build -o bin/delaystart cmd/samples/recipes/delaystart/*.go
@@ -219,7 +214,6 @@ clean:
 	rm -Rf $(BUILD)
 
 bins: helloworld \
-	blocks \
 	versioning \
 	delaystart \
 	branch \
