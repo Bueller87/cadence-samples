@@ -3,10 +3,10 @@ package main
 import "github.com/uber-common/cadence-samples/new_samples/template"
 
 func main() {
-	// Define the data for HelloWorld
+	// Define the data for Query samples
 	data := template.TemplateData{
-		SampleName: "Markdown Query Workflow",
-		Workflows:  []string{"MarkdownQueryWorkflow"},
+		SampleName: "Query",
+		Workflows:  []string{"MarkdownQueryWorkflow", "LunchVoteWorkflow"},
 		Activities: []string{"MarkdownQueryActivity"},
 	}
 
