@@ -46,6 +46,7 @@ func StartWorker() {
 	// HelloWorld workflow registration
 	w.RegisterWorkflowWithOptions(MarkdownQueryWorkflow, workflow.RegisterOptions{Name: "cadence_samples.MarkdownQueryWorkflow"})
 	w.RegisterWorkflowWithOptions(LunchVoteWorkflow, workflow.RegisterOptions{Name: "cadence_samples.LunchVoteWorkflow"})
+	w.RegisterWorkflowWithOptions(OrderFulfillmentWorkflow, workflow.RegisterOptions{Name: "cadence_samples.OrderFulfillmentWorkflow"})
 	w.RegisterActivityWithOptions(MarkdownQueryActivity, activity.RegisterOptions{Name: "cadence_samples.MarkdownQueryActivity"})
 
 	err := w.Start()

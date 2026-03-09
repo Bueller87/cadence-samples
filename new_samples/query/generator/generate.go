@@ -6,7 +6,7 @@ func main() {
 	// Define the data for Query samples
 	data := template.TemplateData{
 		SampleName: "Query",
-		Workflows:  []string{"MarkdownQueryWorkflow", "LunchVoteWorkflow"},
+		Workflows:  []string{"MarkdownQueryWorkflow", "LunchVoteWorkflow", "OrderFulfillmentWorkflow"},
 		Activities: []string{"MarkdownQueryActivity"},
 	}
 
