@@ -265,7 +265,12 @@ func makeOrderDashboard(ctx workflow.Context, order Order, actionLog []ActionLog
 	markdownTemplate, err := template.New("").Parse(`
 ## Order Dashboard
 
-> **This is your admin panel.** No Retool or custom UI needed - manage orders directly from Cadence Web.
+> **This is your admin panel.** No custom UI needed - manage orders directly from Cadence Web.
+
+---
+
+### Available Actions
+{{.actionButtons}}
 
 ---
 
@@ -278,8 +283,8 @@ func makeOrderDashboard(ctx workflow.Context, order Order, actionLog []ActionLog
 | **Email** | {{.customerEmail}} |
 | **Created** | {{.createdAt}} |
 | **Status** | {{.statusBadge}} |
-{{if .trackingNum}}| **Tracking** | {{.carrier}} - {{.trackingNum}} |{{end}}
-{{if .refundAmount}}| **Refund** | ${{.refundAmount}} ({{.refundReason}}) |{{end}}
+{{if .trackingNum}} **Tracking: {{.carrier}} - {{.trackingNum}}** {{end}}
+{{if .refundAmount}}**Refund: ${{.refundAmount}}** {{end}}
 
 ### Order Items
 
@@ -288,11 +293,6 @@ func makeOrderDashboard(ctx workflow.Context, order Order, actionLog []ActionLog
 {{.itemsTable}}
 
 **Total: ${{.totalAmount}}**
-
----
-
-### Available Actions
-{{.actionButtons}}
 
 ---
 
@@ -505,7 +505,7 @@ func makeActionButtons(ctx workflow.Context, order Order) string {
 
 	default:
 		buttons = `
-*No actions available - order is in a terminal state.*
+*No actions available - order has been completed.*
 `
 	}
 
