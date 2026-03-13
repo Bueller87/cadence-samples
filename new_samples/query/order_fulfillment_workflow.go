@@ -263,18 +263,18 @@ func makeOrderDashboard(ctx workflow.Context, order Order, actionLog []ActionLog
 	type P map[string]interface{}
 
 	markdownTemplate, err := template.New("").Parse(`
-## 🛒 Order Dashboard 
+## 🛒 Order Dashboard
 
 > **Your admin panel** - manage orders directly from Cadence Web.
 
 ---
 
-### Available Actions
+### ⚡ Available Actions
 {{.actionButtons}}
 
 ---
 
-### Order Details
+### 📋 Order Details
 
 | Field | Value |
 |-------|-------|
@@ -286,7 +286,7 @@ func makeOrderDashboard(ctx workflow.Context, order Order, actionLog []ActionLog
 {{if .trackingNum}} **Tracking: {{.carrier}} - {{.trackingNum}}** {{end}}
 {{if .refundAmount}}**Refund: ${{.refundAmount}}** {{end}}
 
-### Order Items
+### 📦 Order Items
 
 | Item | Qty | Price | Subtotal |
 |------|-----|-------|----------|
@@ -296,7 +296,7 @@ func makeOrderDashboard(ctx workflow.Context, order Order, actionLog []ActionLog
 
 ---
 
-### Action History
+### ⏱️ Action History
 
 | Timestamp | Action | Operator | Details |
 |-----------|--------|----------|---------|
@@ -434,7 +434,7 @@ func makeActionButtons(ctx workflow.Context, order Order) string {
 /%%}
 {%% signal 
 	signalName="issue_refund" 
-	label="💰 Partial Refund (50%%%%)"
+	label="💰 Partial Refund (50%%)"
 	domain="cadence-samples"
 	cluster="cluster0"
 	workflowId="%s"
