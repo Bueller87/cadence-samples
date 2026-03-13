@@ -263,9 +263,9 @@ func makeOrderDashboard(ctx workflow.Context, order Order, actionLog []ActionLog
 	type P map[string]interface{}
 
 	markdownTemplate, err := template.New("").Parse(`
-## Order Dashboard
+## 🛒 Order Dashboard 
 
-> **This is your admin panel.** No custom UI needed - manage orders directly from Cadence Web.
+> **Your admin panel** - manage orders directly from Cadence Web.
 
 ---
 
