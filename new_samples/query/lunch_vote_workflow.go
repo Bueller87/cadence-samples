@@ -13,13 +13,6 @@ import (
 // LunchVoteWorkflow demonstrates using MarkDoc query responses for interactive voting.
 // Users can vote for lunch options via signal buttons rendered in the query response.
 func LunchVoteWorkflow(ctx workflow.Context) error {
-	ao := workflow.ActivityOptions{
-		ScheduleToStartTimeout: time.Minute,
-		StartToCloseTimeout:    time.Minute,
-		HeartbeatTimeout:       time.Second * 20,
-	}
-	ctx = workflow.WithActivityOptions(ctx, ao)
-
 	logger := workflow.GetLogger(ctx)
 	logger.Info("LunchVoteWorkflow started")
 
