@@ -24,7 +24,7 @@ From https://cbea.ms/git-commit/#why-not-how:
 
 ### Required Sections (must exist with substantive content per PR template guidance)
 
-1. **Which sample(s) or area?** (optional but recommended)
+1. **Which sample(s) or area?** 
    - One line listing area(s) touched. This repo has two sample trees: **cmd/samples** (legacy; make + ./bin/…) and **new_samples** (per-folder; go run .). Identify which tree and area(s) are touched.
    - **cmd/samples:** e.g. cmd/samples/recipes/helloworld, cmd/samples/recipes/branch, cmd/samples/recipes/query, cmd/samples/batch, cmd/samples/cron, cmd/samples/expense, cmd/samples/fileprocessing, cmd/samples/dsl, cmd/samples/pso, cmd/samples/recovery, cmd/samples/recipes/cancelactivity, etc.
    - **new_samples:** hello_world, activities, query, signal, operations, client_tls, template.
