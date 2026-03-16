@@ -1,4 +1,5 @@
-<!-- If you are new to contributing or want a refresher, please read .github/pull_request_guidance.md -->
+<!-- For guidance on each section, see the PR guidance doc:
+     https://github.com/cadence-workflow/cadence-samples/blob/master/.github/pull_request_guidance.md -->
 **Which sample(s) or area?**
 
 
