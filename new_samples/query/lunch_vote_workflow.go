@@ -6,9 +6,15 @@ import (
 	"time"
 
 	"go.uber.org/cadence/workflow"
-	"go.uber.org/cadence/x/blocks"
 	"go.uber.org/zap"
 )
+
+// lunchVoteFormattedResponse is the JSON shape Cadence Web expects for markdown query results (formattedData, text/markdown, data).
+type lunchVoteFormattedResponse struct {
+	CadenceResponseType string `json:"cadenceResponseType"`
+	Format              string `json:"format"`
+	Data                string `json:"data"`
+}
 
 // LunchVoteWorkflow demonstrates using MarkDoc query responses for interactive voting.
 // Users can vote for lunch options via signal buttons rendered in the query response.
@@ -18,7 +24,7 @@ func LunchVoteWorkflow(ctx workflow.Context) error {
 
 	votes := []map[string]string{}
 
-	workflow.SetQueryHandler(ctx, "options", func() (blocks.QueryResponse, error) {
+	workflow.SetQueryHandler(ctx, "options", func() (lunchVoteFormattedResponse, error) {
 		logger := workflow.GetLogger(ctx)
 		logger.Info("Responding to 'options' query")
 
@@ -47,7 +53,7 @@ func LunchVoteWorkflow(ctx workflow.Context) error {
 }
 
 // makeLunchVoteResponse creates the MarkDoc query response for lunch voting
-func makeLunchVoteResponse(ctx workflow.Context, votes []map[string]string) blocks.QueryResponse {
+func makeLunchVoteResponse(ctx workflow.Context, votes []map[string]string) lunchVoteFormattedResponse {
 	type P map[string]interface{}
 
 	markdownTemplate, err := template.New("").Parse(`
@@ -116,7 +122,11 @@ We're voting on where to order lunch today. Select the option you want to vote f
 		panic("Failed to execute template: " + err.Error())
 	}
 
-	return blocks.New(blocks.NewMarkdownSection(markdown.String()))
+	return lunchVoteFormattedResponse{
+		CadenceResponseType: "formattedData",
+		Format:              "text/markdown",
+		Data:                markdown.String(),
+	}
 }
 
 // makeLunchVoteTable generates a markdown table of current votes

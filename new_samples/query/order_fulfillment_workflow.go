@@ -7,9 +7,15 @@ import (
 	"time"
 
 	"go.uber.org/cadence/workflow"
-	"go.uber.org/cadence/x/blocks"
 	"go.uber.org/zap"
 )
+
+// orderDashboardFormattedResponse is the JSON shape Cadence Web expects for markdown query results (formattedData, text/markdown, data).
+type orderDashboardFormattedResponse struct {
+	CadenceResponseType string `json:"cadenceResponseType"`
+	Format              string `json:"format"`
+	Data                string `json:"data"`
+}
 
 // Order represents an e-commerce order being fulfilled
 type Order struct {
@@ -114,7 +120,7 @@ func OrderFulfillmentWorkflow(ctx workflow.Context) error {
 	}
 
 	// Register query handler for the ops dashboard
-	workflow.SetQueryHandler(ctx, "dashboard", func() (blocks.QueryResponse, error) {
+	workflow.SetQueryHandler(ctx, "dashboard", func() (orderDashboardFormattedResponse, error) {
 		logger.Info("Responding to 'dashboard' query")
 		return makeOrderDashboard(ctx, order, actionLog), nil
 	})
@@ -259,7 +265,7 @@ func getOperator(operator string) string {
 	return operator
 }
 
-func makeOrderDashboard(ctx workflow.Context, order Order, actionLog []ActionLogEntry) blocks.QueryResponse {
+func makeOrderDashboard(ctx workflow.Context, order Order, actionLog []ActionLogEntry) orderDashboardFormattedResponse {
 	type P map[string]interface{}
 
 	markdownTemplate, err := template.New("").Parse(`
@@ -330,7 +336,11 @@ func makeOrderDashboard(ctx workflow.Context, order Order, actionLog []ActionLog
 		panic("Failed to execute template: " + err.Error())
 	}
 
-	return blocks.New(blocks.NewMarkdownSection(markdown.String()))
+	return orderDashboardFormattedResponse{
+		CadenceResponseType: "formattedData",
+		Format:              "text/markdown",
+		Data:                markdown.String(),
+	}
 }
 
 func getStatusBadge(status string) string {

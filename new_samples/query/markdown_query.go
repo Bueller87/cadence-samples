@@ -9,13 +9,19 @@ import (
 
 	"go.uber.org/cadence/activity"
 	"go.uber.org/cadence/workflow"
-	"go.uber.org/cadence/x/blocks"
 	"go.uber.org/zap"
 )
 
 const (
 	CompleteSignalChan = "complete"
 )
+
+// markdownFormattedResponse is the JSON shape Cadence Web expects for markdown query results (formattedData, text/markdown, data).
+type markdownFormattedResponse struct {
+	CadenceResponseType string `json:"cadenceResponseType"`
+	Format              string `json:"format"`
+	Data                string `json:"data"`
+}
 
 func MarkdownQueryWorkflow(ctx workflow.Context) error {
 	ao := workflow.ActivityOptions{
@@ -26,7 +32,7 @@ func MarkdownQueryWorkflow(ctx workflow.Context) error {
 	logger := workflow.GetLogger(ctx)
 	logger.Info("MarkdownQueryWorkflow started")
 
-	workflow.SetQueryHandler(ctx, "Signal", func() (blocks.QueryResponse, error) {
+	workflow.SetQueryHandler(ctx, "Signal", func() (markdownFormattedResponse, error) {
 		logger := workflow.GetLogger(ctx)
 		logger.Info("Responding to 'Signal' query")
 
@@ -57,7 +63,7 @@ func MarkdownQueryWorkflow(ctx workflow.Context) error {
 	}
 }
 
-func makeMarkdownQueryResponse(ctx workflow.Context) blocks.QueryResponse {
+func makeMarkdownQueryResponse(ctx workflow.Context) markdownFormattedResponse {
 	type P map[string]interface{}
 
 	markdownTemplate, err := template.New("").Parse(`
@@ -114,7 +120,11 @@ func makeMarkdownQueryResponse(ctx workflow.Context) blocks.QueryResponse {
 		panic("Failed to execute template: " + err.Error())
 	}
 
-	return blocks.New(blocks.NewMarkdownSection(markdown.String()))
+	return markdownFormattedResponse{
+		CadenceResponseType: "formattedData",
+		Format:              "text/markdown",
+		Data:                markdown.String(),
+	}
 }
 
 func MarkdownQueryActivity(ctx context.Context, complete bool) (string, error) {
