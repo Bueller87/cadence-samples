@@ -37,7 +37,6 @@ PROGS = helloworld \
 	sleep \
 	dataconverter \
 	autoscaling-monitoring \
-	batch \
 
 TEST_ARG ?= -race -v -timeout 5m
 BUILD := ./build
@@ -75,7 +74,6 @@ TEST_DIRS=./cmd/samples/cron \
 	./cmd/samples/recipes/dataconverter \
 	./cmd/samples/recovery \
 	./cmd/samples/pso \
-	./cmd/samples/batch \
 
 cancelactivity:
 	go build -o bin/cancelactivity cmd/samples/recipes/cancelactivity/*.go
@@ -188,9 +186,6 @@ dataconverter:
 autoscaling-monitoring:
 	go build -o bin/autoscaling-monitoring cmd/samples/advanced/autoscaling-monitoring/*.go
 
-batch:
-	go build -o bin/batch cmd/samples/batch/*.go
-
 run-generators:
 	@echo "Running generators in new_samples..."
 	@for dir in new_samples/*/generator; do \
@@ -246,4 +241,3 @@ bins: helloworld \
 	sleep \
 	dataconverter \
 	autoscaling-monitoring \
-	batch \
