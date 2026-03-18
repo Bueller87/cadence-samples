@@ -37,7 +37,7 @@ func StartWorker() {
 	dataConverter := NewCompressedJSONDataConverter()
 
 	// Show compression statistics on startup
-	printCompressionStats(dataConverter)
+	printCompressionStats()
 
 	workerOptions := worker.Options{
 		Logger:        logger,
@@ -63,9 +63,7 @@ func StartWorker() {
 }
 
 // printCompressionStats displays compression statistics for the sample payload
-func printCompressionStats(converter interface {
-	ToData(value ...interface{}) ([]byte, error)
-}) {
+func printCompressionStats() {
 	largePayload := CreateLargePayload()
 	originalSize, compressedSize, compressionPercentage, err := GetPayloadSizeInfo(largePayload, NewCompressedJSONDataConverter())
 	if err != nil {
