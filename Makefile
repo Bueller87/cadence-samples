@@ -35,7 +35,6 @@ PROGS = helloworld \
 	signalcounter \
 	sideeffect \
 	sleep \
-	dataconverter \
 	autoscaling-monitoring \
 
 TEST_ARG ?= -race -v -timeout 5m
@@ -71,7 +70,6 @@ TEST_DIRS=./cmd/samples/cron \
 	./cmd/samples/recipes/sideeffect \
 	./cmd/samples/recipes/signalcounter \
 	./cmd/samples/recipes/sleep \
-	./cmd/samples/recipes/dataconverter \
 	./cmd/samples/recovery \
 	./cmd/samples/pso \
 
@@ -180,9 +178,6 @@ sideeffect:
 versioning:
 	go build -o bin/versioning cmd/samples/recipes/versioning/*.go
 
-dataconverter:
-	go build -o bin/dataconverter cmd/samples/recipes/dataconverter/*.go
-
 autoscaling-monitoring:
 	go build -o bin/autoscaling-monitoring cmd/samples/advanced/autoscaling-monitoring/*.go
 
@@ -239,5 +234,4 @@ bins: helloworld \
 	signalcounter \
 	sideeffect \
 	sleep \
-	dataconverter \
 	autoscaling-monitoring \
