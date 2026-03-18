@@ -43,7 +43,7 @@ func StartWorker() {
 		Domain,
 		TaskListName,
 		workerOptions)
-	// HelloWorld workflow registration
+	// workflow registration
 	w.RegisterWorkflowWithOptions(BatchWorkflow, workflow.RegisterOptions{Name: "cadence_samples.BatchWorkflow"})
 	w.RegisterActivityWithOptions(BatchActivity, activity.RegisterOptions{Name: "cadence_samples.BatchActivity"})
 
